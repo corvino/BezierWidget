@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		273457D41ACB273F002A4644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457D31ACB273F002A4644 /* AppDelegate.swift */; };
+		273457D61ACB273F002A4644 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457D51ACB273F002A4644 /* ViewController.swift */; };
+		273457D81ACB273F002A4644 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273457D71ACB273F002A4644 /* Images.xcassets */; };
+		273457DB1ACB273F002A4644 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273457D91ACB273F002A4644 /* Main.storyboard */; };
+		273457E71ACB273F002A4644 /* TimingCurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457E61ACB273F002A4644 /* TimingCurveTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		273457E11ACB273F002A4644 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 273457C61ACB273F002A4644 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273457CD1ACB273F002A4644;
+			remoteInfo = TimingCurve;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		273457CE1ACB273F002A4644 /* TimingCurve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimingCurve.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		273457D21ACB273F002A4644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		273457D31ACB273F002A4644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		273457D51ACB273F002A4644 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		273457D71ACB273F002A4644 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		273457DA1ACB273F002A4644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		273457E01ACB273F002A4644 /* TimingCurveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimingCurveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		273457E51ACB273F002A4644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		273457E61ACB273F002A4644 /* TimingCurveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingCurveTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		273457CB1ACB273F002A4644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273457DD1ACB273F002A4644 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		273457C51ACB273F002A4644 = {
+			isa = PBXGroup;
+			children = (
+				273457D01ACB273F002A4644 /* TimingCurve */,
+				273457E31ACB273F002A4644 /* TimingCurveTests */,
+				273457CF1ACB273F002A4644 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		273457CF1ACB273F002A4644 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				273457CE1ACB273F002A4644 /* TimingCurve.app */,
+				273457E01ACB273F002A4644 /* TimingCurveTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		273457D01ACB273F002A4644 /* TimingCurve */ = {
+			isa = PBXGroup;
+			children = (
+				273457D31ACB273F002A4644 /* AppDelegate.swift */,
+				273457D51ACB273F002A4644 /* ViewController.swift */,
+				273457D71ACB273F002A4644 /* Images.xcassets */,
+				273457D91ACB273F002A4644 /* Main.storyboard */,
+				273457D11ACB273F002A4644 /* Supporting Files */,
+			);
+			path = TimingCurve;
+			sourceTree = "<group>";
+		};
+		273457D11ACB273F002A4644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				273457D21ACB273F002A4644 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		273457E31ACB273F002A4644 /* TimingCurveTests */ = {
+			isa = PBXGroup;
+			children = (
+				273457E61ACB273F002A4644 /* TimingCurveTests.swift */,
+				273457E41ACB273F002A4644 /* Supporting Files */,
+			);
+			path = TimingCurveTests;
+			sourceTree = "<group>";
+		};
+		273457E41ACB273F002A4644 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				273457E51ACB273F002A4644 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		273457CD1ACB273F002A4644 /* TimingCurve */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurve" */;
+			buildPhases = (
+				273457CA1ACB273F002A4644 /* Sources */,
+				273457CB1ACB273F002A4644 /* Frameworks */,
+				273457CC1ACB273F002A4644 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimingCurve;
+			productName = TimingCurve;
+			productReference = 273457CE1ACB273F002A4644 /* TimingCurve.app */;
+			productType = "com.apple.product-type.application";
+		};
+		273457DF1ACB273F002A4644 /* TimingCurveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273457ED1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurveTests" */;
+			buildPhases = (
+				273457DC1ACB273F002A4644 /* Sources */,
+				273457DD1ACB273F002A4644 /* Frameworks */,
+				273457DE1ACB273F002A4644 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				273457E21ACB273F002A4644 /* PBXTargetDependency */,
+			);
+			name = TimingCurveTests;
+			productName = TimingCurveTests;
+			productReference = 273457E01ACB273F002A4644 /* TimingCurveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		273457C61ACB273F002A4644 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Nathan Corvino";
+				TargetAttributes = {
+					273457CD1ACB273F002A4644 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					273457DF1ACB273F002A4644 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 273457CD1ACB273F002A4644;
+					};
+				};
+			};
+			buildConfigurationList = 273457C91ACB273F002A4644 /* Build configuration list for PBXProject "TimingCurve" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 273457C51ACB273F002A4644;
+			productRefGroup = 273457CF1ACB273F002A4644 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				273457CD1ACB273F002A4644 /* TimingCurve */,
+				273457DF1ACB273F002A4644 /* TimingCurveTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		273457CC1ACB273F002A4644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273457D81ACB273F002A4644 /* Images.xcassets in Resources */,
+				273457DB1ACB273F002A4644 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273457DE1ACB273F002A4644 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		273457CA1ACB273F002A4644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273457D61ACB273F002A4644 /* ViewController.swift in Sources */,
+				273457D41ACB273F002A4644 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273457DC1ACB273F002A4644 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				273457E71ACB273F002A4644 /* TimingCurveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		273457E21ACB273F002A4644 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273457CD1ACB273F002A4644 /* TimingCurve */;
+			targetProxy = 273457E11ACB273F002A4644 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		273457D91ACB273F002A4644 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				273457DA1ACB273F002A4644 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		273457E81ACB273F002A4644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		273457E91ACB273F002A4644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		273457EB1ACB273F002A4644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TimingCurve/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		273457EC1ACB273F002A4644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TimingCurve/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		273457EE1ACB273F002A4644 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimingCurveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimingCurve.app/Contents/MacOS/TimingCurve";
+			};
+			name = Debug;
+		};
+		273457EF1ACB273F002A4644 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimingCurveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimingCurve.app/Contents/MacOS/TimingCurve";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		273457C91ACB273F002A4644 /* Build configuration list for PBXProject "TimingCurve" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273457E81ACB273F002A4644 /* Debug */,
+				273457E91ACB273F002A4644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurve" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273457EB1ACB273F002A4644 /* Debug */,
+				273457EC1ACB273F002A4644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		273457ED1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				273457EE1ACB273F002A4644 /* Debug */,
+				273457EF1ACB273F002A4644 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 273457C61ACB273F002A4644 /* Project object */;
+}
