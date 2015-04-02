@@ -16,6 +16,9 @@ class ViewController: NSViewController {
     let line2 = CAShapeLayer()
     let curve = CAShapeLayer()
 
+    let propertyLabel = CATextLayer()
+    let timeLabel = CATextLayer()
+
     var pointView1 = NSView()
     var pointView2 = NSView()
 
@@ -29,6 +32,8 @@ class ViewController: NSViewController {
 
         let darkBrownColor = NSColor(red: 72/255, green: 52/255, blue: 37/255, alpha: 1)
         let darkGreenColor = NSColor(red: 82/255, green: 151/255, blue: 103/255, alpha: 1)
+
+        view.layer!.backgroundColor = NSColor.whiteColor().CGColor
 
         graphInner.strokeColor = darkBrownColor.CGColor
         graphInner.fillColor = NSColor.clearColor().CGColor
@@ -54,6 +59,19 @@ class ViewController: NSViewController {
         curve.fillColor = NSColor.clearColor().CGColor;
         curve.lineWidth = 4;
 
+        propertyLabel.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
+        propertyLabel.fontSize = 15
+        propertyLabel.foregroundColor = NSColor.blackColor().CGColor
+        propertyLabel.alignmentMode = kCAAlignmentCenter
+        propertyLabel.string = "property"
+        propertyLabel.setAffineTransform(CGAffineTransformMakeRotation(CGFloat(M_PI_2)))
+
+        timeLabel.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
+        timeLabel.fontSize = 15
+        timeLabel.foregroundColor = NSColor.blackColor().CGColor
+        timeLabel.alignmentMode = kCAAlignmentCenter
+        timeLabel.string = "time"
+
         setupPointView(pointView1, title: "1")
         setupPointView(pointView2, title: "2")
 
@@ -63,6 +81,8 @@ class ViewController: NSViewController {
         view.layer!.addSublayer(line1)
         view.layer!.addSublayer(line2)
         view.layer!.addSublayer(curve)
+        view.layer!.addSublayer(propertyLabel)
+        view.layer!.addSublayer(timeLabel)
         view.addSubview(pointView1)
         view.addSubview(pointView2)
     }
@@ -146,6 +166,10 @@ class ViewController: NSViewController {
 
         graphInner.path = cocoaPathToQuartzPath(pathInner)
         graphOuter.path = cocoaPathToQuartzPath(pathOuter)
+
+        CATransaction.setDisableActions(true)
+        propertyLabel.position = CGPoint(x: CGRectGetMinX(rect) - 15, y: CGRectGetMidY(rect))
+        timeLabel.position = CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMinY(rect) - 15)
 
         updatePaths(0.1, animateLines: false)
     }
