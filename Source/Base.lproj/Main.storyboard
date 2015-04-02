@@ -672,13 +672,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="482" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGU-WO-rFq">
-                                <rect key="frame" x="0.0" y="30" width="482" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="mxh-Sn-UBP"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="uSS-z7-Syu"/>
-                                </constraints>
-                            </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="izE-Wf-WJL">
                                 <rect key="frame" x="0.0" y="0.0" width="482" height="30"/>
                                 <subviews>
@@ -703,7 +696,7 @@
                                                     <menuItem title="Linear" id="1O8-ct-R0t"/>
                                                     <menuItem title="Ease-In" id="cA3-5w-mAC"/>
                                                     <menuItem title="Ease-Out" id="swy-qP-uVV"/>
-                                                    <menuItem title="Ease-In Ease-Out" state="on" id="pNh-cb-Xa3">
+                                                    <menuItem title="Ease-In Ease-Out" id="pNh-cb-Xa3">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="Default" state="on" id="glt-Gu-fdh">
@@ -716,7 +709,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
-                                            <action selector="curvePopoupChanged:" target="XfG-lQ-9wD" id="ajx-eO-Pkn"/>
+                                            <action selector="curvePopUpChanged:" target="XfG-lQ-9wD" id="VCO-o8-V5Q"/>
                                         </connections>
                                     </popUpButton>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dw5-Gr-yft">
@@ -742,6 +735,13 @@
                                     <constraint firstAttribute="centerX" secondItem="d2s-Tq-Xby" secondAttribute="centerX" id="tz6-ra-ZrA"/>
                                 </constraints>
                             </customView>
+                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGU-WO-rFq" customClass="BezierWidget" customModule="TimingCurve" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="482" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="mxh-Sn-UBP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="uSS-z7-Syu"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="jGU-WO-rFq" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="1Ft-aB-mCO"/>
@@ -755,10 +755,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="canvasView" destination="jGU-WO-rFq" id="0Mo-ex-KAW"/>
+                        <outlet property="bezierWidget" destination="jGU-WO-rFq" id="ez1-xW-GPv"/>
                         <outlet property="cp1TextField" destination="PJh-D2-n1e" id="3HG-W6-UUr"/>
                         <outlet property="cp2TextField" destination="Dw5-Gr-yft" id="Fyb-me-fPJ"/>
-                        <outlet property="curvePopUp" destination="d2s-Tq-Xby" id="5nM-Gv-vzi"/>
+                        <outlet property="curvePopUp" destination="d2s-Tq-Xby" id="zv0-Ps-TJc"/>
                         <outlet property="customTimingMenuItem" destination="VdP-8i-2Qd" id="Zfz-wK-7M7"/>
                     </connections>
                 </viewController>
