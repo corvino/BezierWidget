@@ -669,9 +669,98 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="TimingCurve" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="482" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGU-WO-rFq">
+                                <rect key="frame" x="0.0" y="30" width="482" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="mxh-Sn-UBP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="uSS-z7-Syu"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="izE-Wf-WJL">
+                                <rect key="frame" x="0.0" y="0.0" width="482" height="30"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PJh-D2-n1e">
+                                        <rect key="frame" x="10" y="6" width="104" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="qsz-Vo-X0h"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Control Point 1" id="RVZ-jg-aS5">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-Tq-Xby">
+                                        <rect key="frame" x="170" y="2" width="143" height="26"/>
+                                        <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="glt-Gu-fdh" id="9t8-A6-iP7">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="rsH-vK-Kaa">
+                                                <items>
+                                                    <menuItem title="Linear" id="1O8-ct-R0t"/>
+                                                    <menuItem title="Ease-In" id="cA3-5w-mAC"/>
+                                                    <menuItem title="Ease-Out" id="swy-qP-uVV"/>
+                                                    <menuItem title="Ease-In Ease-Out" state="on" id="pNh-cb-Xa3">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Default" state="on" id="glt-Gu-fdh">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Custom" id="VdP-8i-2Qd">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="curvePopoupChanged:" target="XfG-lQ-9wD" id="ajx-eO-Pkn"/>
+                                        </connections>
+                                    </popUpButton>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dw5-Gr-yft">
+                                        <rect key="frame" x="369" y="7" width="104" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="IAr-fz-2U9"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Control Point 2" id="WNq-dH-RzA">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="PJh-D2-n1e" secondAttribute="centerY" id="A99-Xw-OSn"/>
+                                    <constraint firstItem="PJh-D2-n1e" firstAttribute="leading" secondItem="izE-Wf-WJL" secondAttribute="leading" constant="12" id="V0g-9D-YJs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dw5-Gr-yft" secondAttribute="trailing" constant="11" id="WQW-kY-O6x"/>
+                                    <constraint firstItem="d2s-Tq-Xby" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PJh-D2-n1e" secondAttribute="trailing" id="dqC-Ye-NzE"/>
+                                    <constraint firstItem="Dw5-Gr-yft" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d2s-Tq-Xby" secondAttribute="trailing" id="eyo-Ub-Rco"/>
+                                    <constraint firstAttribute="centerY" secondItem="d2s-Tq-Xby" secondAttribute="centerY" id="nhh-Mh-vLX"/>
+                                    <constraint firstAttribute="centerY" secondItem="Dw5-Gr-yft" secondAttribute="centerY" id="oBX-uU-i5L"/>
+                                    <constraint firstAttribute="centerX" secondItem="d2s-Tq-Xby" secondAttribute="centerX" id="tz6-ra-ZrA"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="jGU-WO-rFq" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="1Ft-aB-mCO"/>
+                            <constraint firstAttribute="bottom" secondItem="izE-Wf-WJL" secondAttribute="bottom" id="AVp-uH-nnF"/>
+                            <constraint firstItem="izE-Wf-WJL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="FEn-z1-CBm"/>
+                            <constraint firstItem="izE-Wf-WJL" firstAttribute="top" secondItem="jGU-WO-rFq" secondAttribute="bottom" id="Mgu-YV-xYe"/>
+                            <constraint firstAttribute="trailing" secondItem="jGU-WO-rFq" secondAttribute="trailing" id="e74-2z-s6z"/>
+                            <constraint firstAttribute="bottom" secondItem="jGU-WO-rFq" secondAttribute="bottom" constant="30" id="gKu-R8-UUA"/>
+                            <constraint firstAttribute="trailing" secondItem="izE-Wf-WJL" secondAttribute="trailing" id="lmK-Pc-I3q"/>
+                            <constraint firstItem="jGU-WO-rFq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="yV6-Yj-Fyx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="canvasView" destination="jGU-WO-rFq" id="0Mo-ex-KAW"/>
+                        <outlet property="cp1TextField" destination="PJh-D2-n1e" id="3HG-W6-UUr"/>
+                        <outlet property="cp2TextField" destination="Dw5-Gr-yft" id="Fyb-me-fPJ"/>
+                        <outlet property="curvePopUp" destination="d2s-Tq-Xby" id="5nM-Gv-vzi"/>
+                        <outlet property="customTimingMenuItem" destination="VdP-8i-2Qd" id="Zfz-wK-7M7"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

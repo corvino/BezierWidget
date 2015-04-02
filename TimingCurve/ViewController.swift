@@ -10,6 +10,13 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var canvasView: NSView!
+
+    @IBOutlet weak var cp1TextField: NSTextField!
+    @IBOutlet weak var cp2TextField: NSTextField!
+    @IBOutlet weak var curvePopUp: NSPopUpButton!
+    @IBOutlet weak var customTimingMenuItem: NSMenuItem!
+
     let graphInner = CAShapeLayer()
     let graphOuter = CAShapeLayer()
     let line1 = CAShapeLayer()
@@ -19,21 +26,48 @@ class ViewController: NSViewController {
     let propertyLabel = CATextLayer()
     let timeLabel = CATextLayer()
 
-    var pointView1 = NSView()
-    var pointView2 = NSView()
+    let pointLayer1 = ViewController.createPointLayer("1")
+    let pointLayer2 = ViewController.createPointLayer("2")
 
-    var settingsCp1 = CGPoint(x: 0.25, y: 1 - 0.10000000149011612)
-    var settingsCp2 = CGPoint(x: 0.25, y: 1 - 0.10000000149011612)
+    var settingsCp1 = CGPointZero
+    var settingsCp2 = CGPointZero
 
-    let isAnimating = false
+    var timingFunction : CAMediaTimingFunction
+
+    var draggingPoint : CALayer?
+
+    required init?(coder: NSCoder) {
+        timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+
+        super.init(coder: coder)
+
+        setControlPointsFromTimingFunction()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        setControlPointsFromTimingFunction()
+
+        if nil != canvasView.layer {
+            println("evilevil; the layer isn't always present in viewDidLoad")
+            doLoad()
+        }
+    }
+
+    override func viewWillAppear() {
+        println("evilevil; the layer is present by viewWillAppear")
+        if nil == canvasView.layer!.sublayers {
+            doLoad()
+        }
+    }
+
+    func doLoad() {
         let darkBrownColor = NSColor(red: 72/255, green: 52/255, blue: 37/255, alpha: 1)
         let darkGreenColor = NSColor(red: 82/255, green: 151/255, blue: 103/255, alpha: 1)
 
-        view.layer!.backgroundColor = NSColor.whiteColor().CGColor
+        canvasView.layer!.backgroundColor = NSColor.whiteColor().CGColor
 
         graphInner.strokeColor = darkBrownColor.CGColor
         graphInner.fillColor = NSColor.clearColor().CGColor
@@ -72,33 +106,32 @@ class ViewController: NSViewController {
         timeLabel.alignmentMode = kCAAlignmentCenter
         timeLabel.string = "time"
 
-        setupPointView(pointView1, title: "1")
-        setupPointView(pointView2, title: "2")
+        canvasView.wantsLayer = true
+        canvasView.layer!.addSublayer(graphInner)
+        canvasView.layer!.addSublayer(graphOuter)
+        canvasView.layer!.addSublayer(line1)
+        canvasView.layer!.addSublayer(line2)
+        canvasView.layer!.addSublayer(curve)
+        canvasView.layer!.addSublayer(propertyLabel)
+        canvasView.layer!.addSublayer(timeLabel)
+        canvasView.layer!.addSublayer(pointLayer1)
+        canvasView.layer!.addSublayer(pointLayer2)
 
-        view.wantsLayer = true
-        view.layer!.addSublayer(graphInner)
-        view.layer!.addSublayer(graphOuter)
-        view.layer!.addSublayer(line1)
-        view.layer!.addSublayer(line2)
-        view.layer!.addSublayer(curve)
-        view.layer!.addSublayer(propertyLabel)
-        view.layer!.addSublayer(timeLabel)
-        view.addSubview(pointView1)
-        view.addSubview(pointView2)
+        canvasView.addGestureRecognizer(NSPanGestureRecognizer(target: self, action: "handlePan:"))
     }
 
     func curveRect() -> CGRect {
-        return (80 > view.frame.size.width || 80 > view.frame.size.height) ? CGRectZero : CGRectInset(view.frame, 40, 40)
+        return (80 > canvasView.bounds.size.width || 80 > canvasView.bounds.size.height) ? CGRectZero : CGRectInset(canvasView.bounds, 40, 40)
     }
 
-    func setupPointView(pointView : NSView, title: String) {
-        pointView.wantsLayer = true
-        pointView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 44, height: 44))
+    class func createPointLayer(title: String) -> CALayer {
+        let darkGreenColor = NSColor(red: 82/255, green: 151/255, blue: 103/255, alpha: 1)
 
         let circle = CAShapeLayer()
         circle.path = CGPathCreateWithEllipseInRect(CGRect(origin: CGPoint(x: 8, y: 8), size: CGSize(width: 28, height: 28)), nil)
         circle.strokeColor = NSColor(red: 227/255, green: 228/255, blue: 199/255, alpha: 1).CGColor
-        circle.fillColor = line1.strokeColor
+        circle.fillColor = darkGreenColor.CGColor
+
         circle.lineWidth = 2
         circle.opacity = 0.8
 
@@ -109,39 +142,65 @@ class ViewController: NSViewController {
         text.foregroundColor = NSColor.whiteColor().CGColor
         text.fontSize = 20
 
-        pointView.layer!.shadowOpacity = 0.625
-        pointView.layer!.shadowOffset = CGSizeMake(0, 1)
-        pointView.layer!.shadowPath = CGPathCreateWithEllipseInRect(CGRect(origin: CGPoint(x: 11, y: 11), size: CGSize(width: 22, height: 22)), nil)
+        let pointLayer = CALayer()
+        pointLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 44, height: 44))
+        pointLayer.shadowOpacity = 0.625
+        pointLayer.shadowOffset = CGSizeMake(0, 1)
+        pointLayer.shadowPath = CGPathCreateWithEllipseInRect(CGRect(origin: CGPoint(x: 11, y: 11), size: CGSize(width: 22, height: 22)), nil)
 
-        pointView.layer!.addSublayer(circle)
-        pointView.layer!.addSublayer(text)
+        pointLayer.addSublayer(circle)
+        pointLayer.addSublayer(text)
 
-        pointView.addGestureRecognizer(NSPanGestureRecognizer(target: self, action: "handlePan:"))
+        return pointLayer
     }
 
-    func handlePan(gestureRecognizer : NSPanGestureRecognizer) {
-        if !(.Cancelled == gestureRecognizer.state || .Ended == gestureRecognizer.state) {
-            let rect = curveRect()
-            var touchPoint = gestureRecognizer.locationInView(view)
-            if touchPoint.x < CGRectGetMinX(rect)  {
-                touchPoint.x = CGRectGetMinX(rect)
-            } else if touchPoint.x > CGRectGetMaxX(rect) {
-                touchPoint.y = CGRectGetMaxY(rect)
+    func handlePan(panner : NSPanGestureRecognizer) {
+        if .Began == panner.state {
+            curvePopUp.selectItem(customTimingMenuItem)
+            draggingPoint = nil
+            if NSPointInRect(panner.locationInView(canvasView), pointLayer1.frame) {
+                draggingPoint = pointLayer1
+            } else if NSPointInRect(panner.locationInView(canvasView), pointLayer2.frame) {
+                draggingPoint = pointLayer2
             }
+            if nil != draggingPoint {
+                var touchPoint = panner.translationInView(canvasView)
+                NSLog("pre-trans touchPoint = (\(touchPoint.x),\(touchPoint.y))")
+                NSLog("draggingPoint.position = (\(draggingPoint?.position.x),\(draggingPoint?.position.y))")
+
+                let adjustedTranslation = CGPoint(x: draggingPoint!.position.x + touchPoint.x, y: draggingPoint!.position.y + touchPoint.y)
+                panner.setTranslation(adjustedTranslation, inView: canvasView)
+
+                touchPoint = panner.translationInView(canvasView)
+                NSLog("post-trans touchPoint = (\(touchPoint.x),\(touchPoint.y))")
+            }
+        } else if (.Ended == panner.state) {
+            draggingPoint = nil
+            timingFunction = CAMediaTimingFunction(controlPoints: Float(settingsCp1.x), 1 - Float(settingsCp1.y), Float(settingsCp2.x), 1 - Float(settingsCp2.y))
+        } else if nil != draggingPoint {
+            let rect = curveRect()
+            let touchPoint = panner.translationInView(canvasView)
+            // The "30" is magic; seems like it should be 40 for the inset. But 40 causes things to jump, 40 doesn't.
+            // Is this the 30 the canvas view is offset from its superview? That doens't seem to make sense...
             let cp = CGPoint(x: (touchPoint.x - CGRectGetMinX(rect)) / CGRectGetWidth(rect),
-                             y: (CGRectGetMaxY(rect) - touchPoint.y) / CGRectGetHeight(rect))
-            if gestureRecognizer.view == pointView1 {
+                y: (CGRectGetMaxY(rect) + 30 - touchPoint.y) / CGRectGetHeight(rect))
+
+            if (draggingPoint == pointLayer1) {
                 settingsCp1 = cp
             } else {
                 settingsCp2 = cp
             }
 
-            self.view.needsLayout = true
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            view.needsLayout = true
+            CATransaction.commit()
         }
     }
 
-    override func viewWillLayout() {
+    override func viewDidLayout() {
         let rect = curveRect()
+
         let pathInner = NSBezierPath()
         pathInner.moveToPoint(CGPoint(x: rect.origin.x, y: CGRectGetMaxY(rect) + 16))
         pathInner.lineToPoint(CGPoint(x: rect.origin.x - 3, y: CGRectGetMaxY(rect) + 10))
@@ -161,21 +220,17 @@ class ViewController: NSViewController {
         pathOuter.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect) - 0.5))
         pathOuter.lineToPoint(CGPoint(x: CGRectGetMaxX(rect) - 0.5, y: CGRectGetMaxY(rect) - 0.5))
         pathOuter.lineToPoint(CGPoint(x: CGRectGetMaxX(rect) - 0.5, y: CGRectGetMinY(rect)))
-        // Because of autoclose!!
-        pathOuter.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMaxY(rect) + 0.5))
 
-        graphInner.path = cocoaPathToQuartzPath(pathInner)
-        graphOuter.path = cocoaPathToQuartzPath(pathOuter)
+        graphInner.path = pathInner.cgPath()
+        graphOuter.path = pathOuter.cgPath()
 
+        CATransaction.begin()
         CATransaction.setDisableActions(true)
         propertyLabel.position = CGPoint(x: CGRectGetMinX(rect) - 15, y: CGRectGetMidY(rect))
         timeLabel.position = CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMinY(rect) - 15)
 
         updatePaths(0.1, animateLines: false)
-    }
-
-    func centeredRect(center: CGPoint, size: CGSize) -> CGRect {
-        return CGRect(origin: CGPoint(x: center.x - size.width  / 2, y: center.y - size.height / 2), size: size)
+        CATransaction.commit()
     }
 
     func updatePaths(duration: CGFloat, animateLines: Bool) {
@@ -184,73 +239,97 @@ class ViewController: NSViewController {
                           y: CGRectGetMaxY(rect) - settingsCp1.y * CGRectGetHeight(rect))
         let cp2 = CGPoint(x: CGRectGetMinX(rect) + settingsCp2.x * CGRectGetWidth(rect),
                           y: CGRectGetMaxY(rect) - settingsCp2.y * CGRectGetHeight(rect))
-        let pathCurve = NSBezierPath()
 
+        let pathCurve = NSBezierPath()
         pathCurve.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinY(rect)))
         pathCurve.curveToPoint(CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)), controlPoint1: cp1, controlPoint2: cp2)
-        pathCurve.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinY(rect)))
 
         let pathLine1 = NSBezierPath()
         pathLine1.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinX(rect)))
         pathLine1.lineToPoint(cp1)
 
         let pathLine2 = NSBezierPath()
-        pathLine2.moveToPoint(cp2)
-        pathLine2.lineToPoint(CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)))
+        pathLine2.moveToPoint(CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)))
+        pathLine2.lineToPoint(cp2)
 
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(CFTimeInterval(duration))
-        let animation = CABasicAnimation(keyPath: "path")
-        let cgPath = cocoaPathToQuartzPath(pathCurve)
-        if let layer = curve.presentationLayer() as? CAShapeLayer {
-            animation.fromValue = layer.path
-            animation.toValue = cgPath
+        let cgPath = pathCurve.cgPath()
+
+        let completion : () -> Void = {
+            self.pointLayer1.position = cp1
+            self.pointLayer2.position = cp2
+
+            self.cp1TextField.stringValue = String(NSString(format: "(%0.2f,%0.2f)" , self.settingsCp1.x, self.settingsCp1.y))
+            self.cp2TextField.stringValue = String(NSString(format: "(%0.2f,%0.2f)" , self.settingsCp2.x, self.settingsCp2.y))
+
+            println("pointLayer1.positon = (\(cp1.x),\(cp1.y))")
+            println("pointLayer2.positon = (\(cp2.x),\(cp2.y))")
+
+            self.curve.path = cgPath
+            self.line1.path = pathLine1.cgPath()
+            self.line2.path = pathLine2.cgPath()
         }
 
         if (animateLines) {
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(CFTimeInterval(duration))
 
+            curve.path = cgPath
+            self.line1.path = pathLine1.cgPath()
+            self.line2.path = pathLine2.cgPath()
+
+            let line1Animation = CABasicAnimation(keyPath: "path")
+            line1Animation.fromValue = (line1.presentationLayer() as! CAShapeLayer).path
+            line1Animation.toValue = pathLine1.cgPath()
+            line1.addAnimation(line1Animation, forKey: "path")
+
+            let line2Animation = CABasicAnimation(keyPath: "path")
+            line2Animation.fromValue = (line2.presentationLayer() as! CAShapeLayer).path
+            line2Animation.toValue = pathLine2.cgPath()
+            line2.addAnimation(line2Animation, forKey: "path")
+
+            let point1Animation = CABasicAnimation(keyPath: "position")
+            point1Animation.fromValue = NSValue(point: pointLayer1.presentationLayer().position)
+            point1Animation.toValue = NSValue(point: cp1)
+            pointLayer1.addAnimation(point1Animation, forKey: "position")
+
+            let point2Animation = CABasicAnimation(keyPath: "position")
+            point2Animation.fromValue = NSValue(point: pointLayer2.presentationLayer().position)
+            point2Animation.toValue = NSValue(point: cp2)
+            pointLayer2.addAnimation(point2Animation, forKey: "position")
+
+            CATransaction.setCompletionBlock(completion)
+            CATransaction.commit()
         } else {
-            pointView1.frame = centeredRect(cp1, size: pointView1.frame.size)
-            pointView2.frame = centeredRect(cp2, size: pointView2.frame.size)
+            completion()
         }
-
-        curve.path = cgPath
-        self.line1.path = cocoaPathToQuartzPath(pathLine1)
-        self.line2.path = cocoaPathToQuartzPath(pathLine2)
     }
 
-    func cocoaPathToQuartzPath(bezierPath: NSBezierPath) -> CGPathRef? {
-        var retval : CGPathRef?
+    func setControlPointsFromTimingFunction() {
+        let points = UnsafeMutablePointer<Float>.alloc(2)
 
-        if (0 < bezierPath.elementCount) {
-            let path = CGPathCreateMutable()
-            let points = NSPointArray.alloc(3)
-            var pathOpen = false
+        timingFunction.getControlPointAtIndex(1, values: points)
+        settingsCp1 = CGPoint(x: Double(points[0]), y: 1 - Double(points[1]))
+        timingFunction.getControlPointAtIndex(2, values: points)
+        settingsCp2 = CGPoint(x: Double(points[0]), y: 1 - Double(points[1]))
+    }
 
-            for var i = 0; i < bezierPath.elementCount; i++ {
-                switch(bezierPath.elementAtIndex(i, associatedPoints: points)) {
-                case .MoveToBezierPathElement:
-                    CGPathMoveToPoint(path, nil, points[0].x, points[0].y)
-                case .LineToBezierPathElement:
-                    CGPathAddLineToPoint(path, nil, points[0].x, points[0].y)
-                    pathOpen = true
-                case .CurveToBezierPathElement:
-                    CGPathAddCurveToPoint(path, nil, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y)
-                    pathOpen = true
-                case .ClosePathBezierPathElement:
-                    CGPathCloseSubpath(path)
-                    pathOpen = false
-                }
-            }
-
-            if (pathOpen) {
-                CGPathCloseSubpath(path)
-            }
-
-            retval =  CGPathCreateCopy(path)
-            points.dealloc(3)
+    @IBAction func curvePopoupChanged(sender: AnyObject) {
+        switch curvePopUp.indexOfSelectedItem {
+        case 0:
+            timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        case 1:
+            timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        case 2:
+            timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        case 3:
+            timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        case 4:
+            timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        default:
+            break
         }
 
-        return retval
+        setControlPointsFromTimingFunction()
+        updatePaths(0.25, animateLines: true)
     }
 }
