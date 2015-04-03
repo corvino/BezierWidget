@@ -1,6 +1,6 @@
 //
 //  BezierCurveView.swift
-//  TimingCurve
+//  BezierWidget
 //
 //  Created by Nathan Corvino on 4/2/15.
 //  Copyright (c) 2015 Nathan Corvino. All rights reserved.
@@ -224,9 +224,6 @@ class BezierWidget: NSView {
             self.pointLayer1.position = cp1
             self.pointLayer2.position = cp2
 
-            println("pointLayer1.positon = (\(cp1.x),\(cp1.y))")
-            println("pointLayer2.positon = (\(cp2.x),\(cp2.y))")
-
             self.curve.path = cgPath
             self.line1.path = pathLine1.cgPath()
             self.line2.path = pathLine2.cgPath()
@@ -276,15 +273,9 @@ class BezierWidget: NSView {
                 draggingPoint = pointLayer2
             }
             if nil != draggingPoint {
-                var touchPoint = panner.translationInView(self)
-                NSLog("pre-trans touchPoint = (\(touchPoint.x),\(touchPoint.y))")
-                NSLog("draggingPoint.position = (\(draggingPoint?.position.x),\(draggingPoint?.position.y))")
-
+                let touchPoint = panner.translationInView(self)
                 let adjustedTranslation = CGPoint(x: draggingPoint!.position.x + touchPoint.x, y: draggingPoint!.position.y + touchPoint.y)
                 panner.setTranslation(adjustedTranslation, inView: self)
-
-                touchPoint = panner.translationInView(self)
-                NSLog("post-trans touchPoint = (\(touchPoint.x),\(touchPoint.y))")
             }
         } else if (.Ended == panner.state) {
             draggingPoint = nil

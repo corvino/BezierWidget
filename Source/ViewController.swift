@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  TimingCurve
+//  BezierWidget
 //
 //  Created by Nathan Corvino on 3/31/15.
 //  Copyright (c) 2015 Nathan Corvino. All rights reserved.
