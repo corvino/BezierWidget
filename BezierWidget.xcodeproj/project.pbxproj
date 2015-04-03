@@ -17,7 +17,7 @@
 
 /* Begin PBXFileReference section */
 		271781791ACD9DFF00FF0801 /* NSBezierPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathExtensions.swift; sourceTree = "<group>"; };
-		273457CE1ACB273F002A4644 /* TimingCurve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimingCurve.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		273457CE1ACB273F002A4644 /* BezierWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BezierWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273457D21ACB273F002A4644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273457D31ACB273F002A4644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		273457D51ACB273F002A4644 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		273457CF1ACB273F002A4644 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				273457CE1ACB273F002A4644 /* TimingCurve.app */,
+				273457CE1ACB273F002A4644 /* BezierWidget.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		273457CD1ACB273F002A4644 /* TimingCurve */ = {
+		273457CD1ACB273F002A4644 /* BezierWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurve" */;
+			buildConfigurationList = 273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "BezierWidget" */;
 			buildPhases = (
 				273457CA1ACB273F002A4644 /* Sources */,
 				273457CB1ACB273F002A4644 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = TimingCurve;
+			name = BezierWidget;
 			productName = TimingCurve;
-			productReference = 273457CE1ACB273F002A4644 /* TimingCurve.app */;
+			productReference = 273457CE1ACB273F002A4644 /* BezierWidget.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 273457C91ACB273F002A4644 /* Build configuration list for PBXProject "TimingCurve" */;
+			buildConfigurationList = 273457C91ACB273F002A4644 /* Build configuration list for PBXProject "BezierWidget" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				273457CD1ACB273F002A4644 /* TimingCurve */,
+				273457CD1ACB273F002A4644 /* BezierWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -244,7 +244,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BezierWidget;
 			};
 			name = Debug;
 		};
@@ -255,14 +255,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BezierWidget;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		273457C91ACB273F002A4644 /* Build configuration list for PBXProject "TimingCurve" */ = {
+		273457C91ACB273F002A4644 /* Build configuration list for PBXProject "BezierWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				273457E81ACB273F002A4644 /* Debug */,
@@ -271,7 +271,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "TimingCurve" */ = {
+		273457EA1ACB273F002A4644 /* Build configuration list for PBXNativeTarget "BezierWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				273457EB1ACB273F002A4644 /* Debug */,
