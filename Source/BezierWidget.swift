@@ -16,8 +16,8 @@ class BezierWidget: NSView {
     let line2 = CAShapeLayer()
     let curve = CAShapeLayer()
 
-    let propertyLabel = CATextLayer()
-    let timeLabel = CATextLayer()
+    let xAxisText = CATextLayer()
+    let yAxisText = CATextLayer()
 
     let pointLayer1 = BezierWidget.createPointLayer("1")
     let pointLayer2 = BezierWidget.createPointLayer("2")
@@ -37,6 +37,17 @@ class BezierWidget: NSView {
             // Is this the best way to do this? Means the transaction gets wrapped so
             // it's not controlled by the setter. Works for now...
             updatePaths(0.25, animateLines: true)
+        }
+    }
+
+    var xAxisTitle = "" {
+        didSet {
+            xAxisText.string = xAxisTitle
+        }
+    }
+    var yAxisTitle = "" {
+        didSet {
+            yAxisText.string = yAxisTitle
         }
     }
 
@@ -125,26 +136,26 @@ class BezierWidget: NSView {
         curve.fillColor = NSColor.clearColor().CGColor;
         curve.lineWidth = 4;
 
-        propertyLabel.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
-        propertyLabel.fontSize = 15
-        propertyLabel.foregroundColor = NSColor.blackColor().CGColor
-        propertyLabel.alignmentMode = kCAAlignmentCenter
-        propertyLabel.string = "property"
-        propertyLabel.setAffineTransform(CGAffineTransformMakeRotation(CGFloat(M_PI_2)))
+        xAxisText.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
+        xAxisText.fontSize = 15
+        xAxisText.foregroundColor = NSColor.blackColor().CGColor
+        xAxisText.alignmentMode = kCAAlignmentCenter
+        xAxisText.string = xAxisTitle
 
-        timeLabel.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
-        timeLabel.fontSize = 15
-        timeLabel.foregroundColor = NSColor.blackColor().CGColor
-        timeLabel.alignmentMode = kCAAlignmentCenter
-        timeLabel.string = "time"
+        yAxisText.bounds = CGRect(origin: CGPointZero, size: CGSize(width: 150, height: 22))
+        yAxisText.fontSize = 15
+        yAxisText.foregroundColor = NSColor.blackColor().CGColor
+        yAxisText.alignmentMode = kCAAlignmentCenter
+        yAxisText.string = yAxisTitle
+        yAxisText.setAffineTransform(CGAffineTransformMakeRotation(CGFloat(M_PI_2)))
 
         layer!.addSublayer(graphInner)
         layer!.addSublayer(graphOuter)
         layer!.addSublayer(line1)
         layer!.addSublayer(line2)
         layer!.addSublayer(curve)
-        layer!.addSublayer(propertyLabel)
-        layer!.addSublayer(timeLabel)
+        layer!.addSublayer(xAxisText)
+        layer!.addSublayer(yAxisText)
         layer!.addSublayer(pointLayer1)
         layer!.addSublayer(pointLayer2)
 
@@ -190,8 +201,8 @@ class BezierWidget: NSView {
 
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            propertyLabel.position = CGPoint(x: CGRectGetMinX(rect) - 15, y: CGRectGetMidY(rect))
-            timeLabel.position = CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMinY(rect) - 15)
+            xAxisText.position = CGPoint(x: CGRectGetMidX(rect), y: CGRectGetMinY(rect) - 15)
+            yAxisText.position = CGPoint(x: CGRectGetMinX(rect) - 15, y: CGRectGetMidY(rect))
 
             updatePaths(0.1, animateLines: false)
             CATransaction.commit()
@@ -280,6 +291,7 @@ class BezierWidget: NSView {
         } else if (.Ended == panner.state) {
             draggingPoint = nil
             timingFunction = CAMediaTimingFunction(controlPoints: Float(controlPoint1.x), 1 - Float(controlPoint1.y), Float(controlPoint2.x), 1 - Float(controlPoint2.y))
+            NSNotificationCenter.defaultCenter().postNotificationName("TimingFunctionChanged", object: nil, userInfo: ["TimingFunction" : timingFunction!])
         } else if nil != draggingPoint {
             let rect = curveRect()
             let touchPoint = panner.translationInView(self)

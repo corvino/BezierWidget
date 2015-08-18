@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TimingCurveViewController.swift
 //  BezierWidget
 //
 //  Created by Nathan Corvino on 3/31/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class TimingCurveViewController: NSViewController {
 
     @IBOutlet weak var bezierWidget: BezierWidget!
 
@@ -29,6 +29,9 @@ class ViewController: NSViewController {
 
         self.cp1TextField.stringValue = String(NSString(format: "(%0.2f,%0.2f)" , bezierWidget.controlPoint1.x, bezierWidget.controlPoint1.y))
         self.cp2TextField.stringValue = String(NSString(format: "(%0.2f,%0.2f)" , bezierWidget.controlPoint2.x, bezierWidget.controlPoint2.y))
+
+        bezierWidget.xAxisTitle = "time"
+        bezierWidget.yAxisTitle = "property"
 
         bezierWidget.addObserver(self, forKeyPath: "controlPoint1", options: NSKeyValueObservingOptions.New, context: nil)
         bezierWidget.addObserver(self, forKeyPath: "controlPoint2", options: NSKeyValueObservingOptions.New, context: nil)
@@ -70,6 +73,8 @@ class ViewController: NSViewController {
             changingTiming = true
             bezierWidget.timingFunction = timingFunction
             changingTiming = false
+
+            NSNotificationCenter.defaultCenter().postNotificationName("TimingFunctionChanged", object: nil, userInfo: ["TimingFunction" : timingFunction!])
         }
     }
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2717817A1ACD9DFF00FF0801 /* NSBezierPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271781791ACD9DFF00FF0801 /* NSBezierPathExtensions.swift */; };
 		273457D41ACB273F002A4644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457D31ACB273F002A4644 /* AppDelegate.swift */; };
-		273457D61ACB273F002A4644 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457D51ACB273F002A4644 /* ViewController.swift */; };
+		273457D61ACB273F002A4644 /* TimingCurveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273457D51ACB273F002A4644 /* TimingCurveViewController.swift */; };
 		273457D81ACB273F002A4644 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273457D71ACB273F002A4644 /* Images.xcassets */; };
 		273457DB1ACB273F002A4644 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273457D91ACB273F002A4644 /* Main.storyboard */; };
 		27E67E5D1ACDD6DB00734FAE /* BezierWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E67E5C1ACDD6DB00734FAE /* BezierWidget.swift */; };
@@ -20,7 +20,7 @@
 		273457CE1ACB273F002A4644 /* BezierWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BezierWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		273457D21ACB273F002A4644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273457D31ACB273F002A4644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		273457D51ACB273F002A4644 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		273457D51ACB273F002A4644 /* TimingCurveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingCurveViewController.swift; sourceTree = "<group>"; };
 		273457D71ACB273F002A4644 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		273457DA1ACB273F002A4644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27E67E5C1ACDD6DB00734FAE /* BezierWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierWidget.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				27E67E5C1ACDD6DB00734FAE /* BezierWidget.swift */,
 				273457D91ACB273F002A4644 /* Main.storyboard */,
 				271781791ACD9DFF00FF0801 /* NSBezierPathExtensions.swift */,
-				273457D51ACB273F002A4644 /* ViewController.swift */,
+				273457D51ACB273F002A4644 /* TimingCurveViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -138,7 +138,7 @@
 			files = (
 				2717817A1ACD9DFF00FF0801 /* NSBezierPathExtensions.swift in Sources */,
 				27E67E5D1ACDD6DB00734FAE /* BezierWidget.swift in Sources */,
-				273457D61ACB273F002A4644 /* ViewController.swift in Sources */,
+				273457D61ACB273F002A4644 /* TimingCurveViewController.swift in Sources */,
 				273457D41ACB273F002A4644 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
