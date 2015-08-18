@@ -40,15 +40,15 @@ class BezierWidget: NSView {
         }
     }
 
+    var desiredInset = (dx: 40.0, dy: 40.0) {
+        didSet { needsLayout = true }
+    }
+
     var xAxisTitle = "" {
-        didSet {
-            xAxisText.string = xAxisTitle
-        }
+        didSet { xAxisText.string = xAxisTitle }
     }
     var yAxisTitle = "" {
-        didSet {
-            yAxisText.string = yAxisTitle
-        }
+        didSet { yAxisText.string = yAxisTitle }
     }
 
     // Would like this to be a non-option let, but Swift is defeating us at the moment...
@@ -222,7 +222,7 @@ class BezierWidget: NSView {
         pathCurve.curveToPoint(CGPoint(x: CGRectGetMaxX(rect), y: CGRectGetMaxY(rect)), controlPoint1: cp1, controlPoint2: cp2)
 
         let pathLine1 = NSBezierPath()
-        pathLine1.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinX(rect)))
+        pathLine1.moveToPoint(CGPoint(x: CGRectGetMinX(rect), y: CGRectGetMinY(rect)))
         pathLine1.lineToPoint(cp1)
 
         let pathLine2 = NSBezierPath()
@@ -314,7 +314,7 @@ class BezierWidget: NSView {
     }
 
     func curveRect() -> CGRect {
-        return (80 > bounds.size.width || 80 > bounds.size.height) ? CGRectZero : CGRectInset(bounds, 40, 40)
+        return (CGFloat(desiredInset.dx * 2) > bounds.size.width || CGFloat(desiredInset.dy * 2) > bounds.size.height) ? bounds : CGRectInset(bounds, CGFloat(desiredInset.dx), CGFloat(desiredInset.dy))
     }
 
     func setControlPointsFromTimingFunction() {
