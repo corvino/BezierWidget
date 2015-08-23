@@ -314,7 +314,24 @@ class BezierWidget: NSView {
     }
 
     func curveRect() -> CGRect {
-        return (CGFloat(desiredInset.dx * 2) > bounds.size.width || CGFloat(desiredInset.dy * 2) > bounds.size.height) ? bounds : CGRectInset(bounds, CGFloat(desiredInset.dx), CGFloat(desiredInset.dy))
+        var curveRect : CGRect;
+
+        // Try to honor the desiredInset; however, insetting can result in negative sizes, which causes caueses
+        // the layout code to crash. For small sizes, try to find some reasonable lower bounds, but insure we
+        // don't crash.
+
+        if (CGFloat(desiredInset.dx * 2 + 20) < bounds.size.width && CGFloat(desiredInset.dy * 2 + 20) < bounds.size.height) {
+            curveRect = CGRectInset(bounds, CGFloat(desiredInset.dx), CGFloat(desiredInset.dy));
+        } else if (60 < bounds.size.width && 60 < bounds.size.height) {
+            curveRect = CGRectInset(bounds, 20, 20);
+        } else if (30 < bounds.size.width && 30 < bounds.size.height) {
+            curveRect = CGRectInset(bounds, 10, 10);
+        } else if (0 < bounds.size.width && 0 < bounds.size.height) {
+            curveRect = bounds;
+        } else {
+            curveRect = CGRectZero;
+        }
+        return curveRect;
     }
 
     func setControlPointsFromTimingFunction() {
